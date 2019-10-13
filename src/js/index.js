@@ -3,7 +3,7 @@
 
 import Search from './models/Search';
 import * as searchView from './views/searchView';
-import {elements} from './views/base';
+import {elements, renderLoader, clearLoader} from './views/base';
 
 /**
  * Global state of the app
@@ -30,11 +30,15 @@ import {elements} from './views/base';
         searchView.clearInput();
 
         searchView.clearResList();
+
+        renderLoader(elements.searchRes);
         // 4. search for recipes
 
         await state.search.getResult();
 
         // 5. render results on UI
+
+        clearLoader();
 
         searchView.renderResults(state.search.result);
         
