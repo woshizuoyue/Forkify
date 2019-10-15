@@ -1,5 +1,4 @@
-// api key: 582bc5bce9cf9db59d3c89a0bfe19bf7
-// search query: https://www.food2fork.com/api/search
+
 
 import Search from './models/Search';
 import * as searchView from './views/searchView';
@@ -29,7 +28,7 @@ import {elements, renderLoader, clearLoader} from './views/base';
 
         searchView.clearInput();
 
-        searchView.clearResList();
+        searchView.clearResults();
 
         renderLoader(elements.searchRes);
         // 4. search for recipes
@@ -49,4 +48,17 @@ import {elements, renderLoader, clearLoader} from './views/base';
      
     e.preventDefault();
     controlSearch();
+ });
+
+ elements.searchResPages.addEventListener('click', e =>{
+
+   const btn = e.target.closest('.btn-inline');
+
+   if(btn){
+      const goToPage = parseInt(btn.dataset.goto, 10);
+      searchView.clearResults();
+      searchView.renderResults(state.search.result, goToPage);
+   }
+   
+
  });
