@@ -36,4 +36,31 @@ export default class Recipe{
     calcServings(){
         this.servings = 4;
     }
+
+    parseIngredients(){
+
+        const unitLong = ['tablespoon','tablespoons','ounce','ounces','teaspoon','teaspoons','cups','pounds'];
+        const unitShort = ['tbsp','tbsp','oz','oz','tsp','tsp','cup','pound'];
+
+        const newIngredients = this.ingredients.map(el => {
+
+            //1. uniform unit;
+
+            let ingredient = el.toLowerCase();
+
+            unitLong.forEach((unit, i) => {
+
+                ingredient = ingredient.replace(unit, unitShort[i]);
+            });
+            //2. remove parenthese;
+
+            ingredient = ingredient.replace(/ *\([^)]*\) */g, '');
+
+            //3. parse ingredient into count, unit and ingredient;
+
+            return ingredient;
+        });
+
+        this.ingredients = newIngredients;
+    }
 }

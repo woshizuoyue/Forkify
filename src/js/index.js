@@ -87,6 +87,8 @@ const controlRecipe = async () =>{
 
       state.recipe = new Recipe(id);
 
+      window.r = state.recipe;
+
       // Get recipe data
 
       try{
