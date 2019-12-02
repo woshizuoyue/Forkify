@@ -1,6 +1,7 @@
 import Search from './models/Search';
 import Recipe from './models/Recipe';
 import * as searchView from './views/searchView';
+import * as recipeView from './views/recipeView';
 import {elements, renderLoader, clearLoader} from './views/base';
 
 
@@ -83,6 +84,10 @@ const controlRecipe = async () =>{
 
       // Prepare UI for change;
 
+      recipeView.clearRecipe();
+
+      renderLoader(elements.recipe);
+
       // Create new Recipe objects;
 
       state.recipe = new Recipe(id);
@@ -101,6 +106,9 @@ const controlRecipe = async () =>{
          // Render recipe
 
          console.log(state.recipe);
+
+         cleaerLoader();
+         recipeView.renderRecipe(state.recipe);
       }catch(error){
          alert('error processing recipe');
       }
