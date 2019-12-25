@@ -102,7 +102,7 @@ export const renderRecipe = recipe =>{
                 ${recipe.ingredients.map(el => createIngredient(el)).join('')}
             </ul>
 
-            <button class="btn-small recipe__btn">
+            <button class="btn-small recipe__btn recipe__btn--add">
                 <svg class="search__icon">
                     <use href="img/icons.svg#icon-shopping-cart"></use>
                 </svg>
@@ -137,4 +137,9 @@ export const updateServingsIngredients = recipe =>{
     // update ingredients
 
     const countElements = Array.from(document.querySelectorAll('.recipe__count'));
+
+    countElements.forEac((el, i) =>{
+
+        el.textContent = formatCount(recipe.ingredents[i].count);
+    })
 }
