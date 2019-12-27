@@ -219,7 +219,22 @@ const controlLike = () =>{
    likesView.toggleLikeMenu(state.likes.getNumLikes());
 }
 
+// restore liked recipes on page load
 
+window.addEventListener('load', () =>{
+
+   state.likes = new Like();
+   
+   // restore likes
+   state.likes.readStorage();
+
+   // toggle like menu button
+   likesView.toggleLikeMenu(state.likes.getNumLikes());
+
+   // render the existing likes 
+
+   state.likes.likes.forEach(like => likes.likesView.renderLike(like));
+});
 
 // Handling recipe button clicks
 
