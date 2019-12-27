@@ -83,8 +83,6 @@ const controlRecipe = async () =>{
 
    const id = window.location.hash.replace('#', '');
 
-   console.log(id);
-
    if(id){
 
       // Prepare UI for change;
